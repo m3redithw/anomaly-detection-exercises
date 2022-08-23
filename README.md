@@ -178,3 +178,11 @@ When you have a variable that is not too noisy, you can have a baseline probabil
 
 ***
 # 🤖 𝐄𝐱𝐞𝐫𝐜𝐢𝐬𝐞𝐬
+🔹 [Continuous Probabilistic Methods](continuous_probabilistic_methods.ipynb)
+
+🔹 [Probabilistic Methods (Discrete)](discrete_anomaly_detection.ipynb)
+
+🔹 [Time Series Anomaly Detection](time_series_anomaly_detection.ipynb)
+
+
+
