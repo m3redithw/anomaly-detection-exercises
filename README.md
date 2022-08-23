@@ -109,9 +109,45 @@ Visualizing our data is a key step to wrapping our mind around the shape, distri
 
 - The visualization makes the general trends of the data, as well as the presence of outliers, crystal clear
 
-## 
+### 🔹 The "Empirical Rule" AKA "Three Sigma Rule" AKA 68–95–99.7 Rule
+- Assumes a normal distribution of the observed variable
 
+- Asserts that:
+    - 68% of observations are within 1 standard deviation of the mean
+    - 95% of observations are within 2 standard deviations of the mean
+    - 99.7% of observations are within 3 standard deviations of the mean
 
+- Is often used as a quick test for normality
+
+- Is often erroneously applied to non-normally distributed data.
+
+- Can be an oversimplified approach
+
+- [NEVER MAKE THIS COMMON MISTAKE](https://www.youtube.com/watch?v=30wrS2TEXFM)
+
+    - 2 Standard Deviation Rule
+    
+    - It's a rule that is not only unjustifiable, it can be quite harmful.
+    
+    - Unfortunately, it is quite commonly applied.
+
+[continuous_probabilistic_methods](continuous_probabilistic_methods.ipynb)
+
+### 🔹 Beware "Black Swan" Events
+- Phenomenally low frequency events that have an exponentially powerful impact
+
+- The statement "All swans are white" was a completely true statement for Western and Eastern cultures until they discovered black swans in Australia.
+
+- Term coined by Nassim Taleb, author of [Fooled By Randomness](https://www.fooledbyrandomness.com/)
+
+- Example: on October 19th, 1987, the Dow Jones, a leading index that measures 30 large American public companies, fell 508 points — nearly 23 percent in one day. Professor Henry T.C. Hu of the University of Texas calculated that this was a "25 standard deviation event"
+    - At this time, many models of stock market turbulence assumed normality.
+    
+    - At this time, most risk models assumed that events 25 standard deviations event would never happen in our lifetime
+    
+    - Both then and still, many fundamental financial models such as [Modern Portfolio Theory](https://www.nasdaq.com/investing/glossary/m/modern-portfolio-theory), [Efficient Markets](https://www.nasdaq.com/investing/glossary/e/efficient-market-hypothesis) and the [Black-Scholes option pricing model](https://www.nasdaq.com/investing/glossary/b/black-scholes-option-pricing-model) all assume normality.
+
+- Even if your data looks normally distributed, remember the risk/reward of such low probability events in the tails.
 
 ***
 # 🤖 𝐄𝐱𝐞𝐫𝐜𝐢𝐬𝐞𝐬
