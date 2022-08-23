@@ -1,5 +1,4 @@
-![title.png](title.png)
-
+<img width="1266" alt="title" src="https://user-images.githubusercontent.com/105242871/186199337-6770c199-f1ff-4c5a-b6d6-1b8664cf861c.png">
 
 # 🤖 𝐂𝐥𝐚𝐬𝐬 𝐃𝐞𝐦𝐨 & 𝐑𝐞𝐬𝐨𝐮𝐫𝐜𝐞𝐬
 
@@ -102,6 +101,7 @@ Visualizing our data is a key step to wrapping our mind around the shape, distri
     - [pandas.DataFrame.hist](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.hist.html)
 
 ### 🔹 Anscombe's Quartet
+![Anscombe's_quartet](https://user-images.githubusercontent.com/105242871/186199435-6266f865-0887-4b0c-b285-89c81873dc44.png)
 
 - The measures of central tendancy as well as min/max don't identify the shape our any outliers
 
@@ -115,6 +115,3 @@ Visualizing our data is a key step to wrapping our mind around the shape, distri
 
 ***
 # 🤖 𝐄𝐱𝐞𝐫𝐜𝐢𝐬𝐞𝐬
-
-
-## ◽ Forecasting
