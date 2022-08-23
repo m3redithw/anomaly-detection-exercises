@@ -131,7 +131,7 @@ Visualizing our data is a key step to wrapping our mind around the shape, distri
     
     - Unfortunately, it is quite commonly applied.
 
-[continuous_probabilistic_methods](continuous_probabilistic_methods.ipynb)
+[Continuous Probabilistic Methods Lesson](continuous_probabilistic_methods.ipynb)
 
 ### 🔹 Beware "Black Swan" Events
 - Phenomenally low frequency events that have an exponentially powerful impact
@@ -149,5 +149,21 @@ Visualizing our data is a key step to wrapping our mind around the shape, distri
 
 - Even if your data looks normally distributed, remember the risk/reward of such low probability events in the tails.
 
+### 🔹 Interquartile Range Rule
+- Works for non-normally distributed data
+
+- Introduced by John Tukey in Exploratory Data Analysis 1977
+
+- 1.5 IQR Range rule (mild outliers)
+
+- 3 IQR Range rule (more extreme outliers)
+
+- This multiplier is a hyperparameter.
+
+- One method that uses both the 1.5 and 3 multiplers is to identify a band of mild outliers and another band of more extremem outliers.
+    - lower inner fence: **Q1 - 1.5*IQR**
+    - upper inner fence: **Q3 + 1.5*IQR**
+    - lower outer fence: **Q1 - 3*IQR**
+    - upper outer fence: **Q3 + 3*IQR**
 ***
 # 🤖 𝐄𝐱𝐞𝐫𝐜𝐢𝐬𝐞𝐬
