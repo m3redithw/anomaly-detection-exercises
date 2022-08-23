@@ -165,5 +165,16 @@ Visualizing our data is a key step to wrapping our mind around the shape, distri
     - upper inner fence: **Q3 + 1.5*IQR**
     - lower outer fence: **Q1 - 3*IQR**
     - upper outer fence: **Q3 + 3*IQR**
+
+***
+## Probabilistic Methods (Discrete)
+When you have a variable that is not too noisy, you can have a baseline probability, then as new datapoints come in you can identify and compare the actual rate with the expected rate (probability).
+
+[Discrete Probabilistic Methods Lesson](disc_methods.ipynb)
+
+***
+## Time Series Anomaly Detector
+[Time Series Anomaly Detector Lesson](time_series_anomaly_lesson.ipynb)
+
 ***
 # 🤖 𝐄𝐱𝐞𝐫𝐜𝐢𝐬𝐞𝐬
