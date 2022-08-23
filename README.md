@@ -59,106 +59,62 @@ An outlier is an observation that lies an abnormal distance from other values in
 ### 🔹 Types of Anomalies
 - **Use Cases**: Response times (longer than usual), error rates (more than usual), network load, cyber intrusions, fraud.
 
-- **Point Anomalies**: A single instance of data is anomalous if it's too far off from the rest. For example, detecting data exfiltration based on gigabytes leaving the network, detecting credit card fraud based on "amount spent", etc.
+- **Point Anomalies**: A *single* instance of data is anomalous if it's too far off from the rest. For example, detecting data exfiltration based on gigabytes leaving the network, detecting credit card fraud based on "amount spent", etc.
 
-- **Contextual Anomalies**: The abnormality is context specific. This type of anomaly is common in time-series data. For example, accessing confidential files during work hours is normal, but in the middle of the night is odd.
+- **Contextual Anomalies**: The abnormality is *context specific*. This type of anomaly is common in time-series data. For example, accessing confidential files during work hours is normal, but in the middle of the night is odd.
 
-- **Collective Anomalies**: A set of data instances collectively helps in detecting anomalies. For example, someone is trying to copy data form a remote machine to a local host unexpectedly, an anomaly that would be flagged as a potential cyber attack. The combination of the event from the remote machine and the event from the local host combine to detect the anomaly.
+- **Collective Anomalies**: A set of data instances collectively helps in detecting anomalies. For example, someone is trying to copy data form a remote machine to a local host unexpectedly, an anomaly that would be flagged as a *potential cyber attack*. The combination of the event from the remote machine and the event from the local host combine to detect the anomaly.
 
 - **Anomalies vs. Noise Removal vs. Novelty Detection**: Novelty detection is concerned with identifying an unobserved pattern in new observations not included in training data — for instance, a sudden interest in a new channel on YouTube during Christmas. Noise Removal (NR) is the process of immunizing analysis from the occurrence of unwanted observations; in other words, removing noise from an otherwise meaningful signal.
 
-**Other Resources**: 
-## ◽ Working with Time Series Data
-### ▫️ `dt`
-The `.dt` accessor can be used to access various properties of a date. Some of the more common ones are listed here, and you can reference the pandas documentation for a full list.
+***
+## Specific Techniques for Identifying/Detecting Anomalies
+### 🔹 Statistical Methods
+- Flag the data points that deviate from the expected, based on the statistical properties, such as mean, median, mode, and quantiles.
 
-| **Property**   | **Description**   | 
-|:--------|:------------|
-| year | The year of the datetime |
-| month | The month of the datetime |
-| day | The days of the datetime | 
-| hour | The hour of the datetime | 
-| week | The week ordinal of the year |
-| weekday | The number of the day of the week with Monday=0, Sunday=6 |
-| weekday_name | The name of the day in a week (ex: Friday) |
-| quarter | Quarter of the date: Jan-Mar = 1, Apr-Jun = 2, etc.
+- You could define an anomalous data point as one that deviates by a certain standard deviation from the mean.
 
-###  ▫️ `strfrtime`
-`strftime` method and give date string to format the date in a custom way.
+- You could use a simple or exponential moving average to smooth short-term fluctuations and highlight long-term ones.
 
-#### `strfrtime` Format Cheat Sheet
-| **Units**   | **Specifier**   | **Description**                                                    |
-|:--------|:------------|:---------------------------------------------------------------|
-| seconds | %S          | Second of the minute (00..60)                                  |
-| minutes | %M          | Minute of the hour (00..59)                                    |
-| hours   | %H          | Hour of the day, 24-hour clock (00..23)                        |
-|         | %I          | Hour of the day, 12-hour clock (01..12)                        |
-| days    | %d          | Day of the month                                               |
-|         | %a          | The abbreviated weekday name ("Sun")                           |
-|         | %A          | The full weekday name ("Sunday")                               |
-|         | %j          | Day of the year (001..366)                                     |
-|         | %w          | Day of the week, Sunday is 0 (0..6)                            |
-| weeks   | %U          | Week of the year, Sunday is the first day of the week (00..53) |
-|         | %W          | Week of the year, Monday is the first day of the week (00..53) |
-| months  | %b          | The abbreviated month name ("Jan")                             |
-|         | %B          | The full month name ("January")                                |
-|         | %d          | Day of the month (01..31)                                      |
-|         | %m          | Month of the year (01..12)                                     |
-| years   | %y          | Year without a century (00..99)                                |
-|         | %Y          | Year with century (1999)                                       |
-| misc    | %z          | Time zone offset (-0500)                                       |
-|         | %Z          | Time zone name ("CDT")                                         |
-|         | %p          | Meridian indicator ("AM" or "PM")                              |
-|         | %c          | The preferred local date and time representation               |
-|         | %x          | Preferred representation for the date alone, no time           |
-|         | %X          | Preferred representation for the time alone, no date           |
-**Reference**: [datetime — Basic date and time types](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
+- This method is challenging with really noisy data.
 
-[Working with Time Series Data in Pandas](working_with_time_series_in_pandas.ipynb)
+### 🔹 Clustering-Based Anomaly Detection
+- **Assumption**: Data points that are similar tend to belong to similar groups or clusters, as determined by their distance from local centroids.
 
-## ◽ Data Preparation
-### ▫️ Prepare
-- The most common activity in preparing time series data is setting dates to datetime types using `pd.to_datetime`.
+- **K-means**: it creates 'k' similar clusters of data points. Data instances that fall into abnormally small clusters could potentially be marked as anomalies.
 
-- Another common activity is looking at the frequency of the data and gaps in time or null values.
+- With density based clustering, like `DBSCAN`, we can design the model such that the data points that do not fall into a cluster are the anomalies. Assumption: Normal data points occur around a dense neighborhood and abnormalities are far away.
 
-### ▫️ Data Splitting
-Splitting time series data into train, test, and validate sets is a little trickier than with previous data we have looked at. Because the data points have an order to them, we **cannot** simply assign each point randomly to train, validate, or test.
+***
+## Continuous Variable Probabilistic Methods for Identifying Outliers
+> “Observation which deviates so much from other observations as to arouse suspicion it was generated by a different mechanism” — Hawkins(1980)
 
-Ideally all splits should contain one season's worth of data. There are several methods we can use to split our time series data:
+### 🔹 Visualize the data to see distribution, trend, shape
+Visualizing our data is a key step to wrapping our mind around the shape, distribution, and skew in the data.
 
-- **Human-based**: use, for example, the last year in the dataset as test split
+- Box plots
+    - See [Boxplot Demo](https://matplotlib.org/3.1.1/gallery/pyplots/boxplot_demo_pyplot.html#sphx-glr-gallery-pyplots-boxplot-demo-pyplot-py)
+    - [Creating Boxplots with Matplotlib] http://blog.bharatbhole.com/creating-boxplots-with-matplotlib/
 
-- **Percentage based**: use the last 20% as test
+- Scatter plots
 
-- **Cross Validate**: break data up into slices and use successive slices as train and test repeatedly (`sklearn.model_selection.TimeSeriesSplit`)
+- Plot a histogram
+    - [pandas.DataFrame.hist](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.hist.html)
 
-## ◽ Exploratory Analysis
-The primary use case for Time Series EDA techniques is when we have a single continuous variable sampled over time and we want to identify **trend** and **seasonality**.
+### 🔹 Anscombe's Quartet
 
+- The measures of central tendancy as well as min/max don't identify the shape our any outliers
 
+- The linear model for each quartet dataset has almost the exact same slope and intercept
 
-## ◽ Forecasting
-- **Last bbserved value**
-- **Simple average**
-- **Moving average**
-- **Holt's Linear Trend**
-- **Previous Cycle**
+- The visualization makes the general trends of the data, as well as the presence of outliers, crystal clear
 
+## 
 
 
 
 ***
 # 🤖 𝐄𝐱𝐞𝐫𝐜𝐢𝐬𝐞𝐬
 
-## ◽ Data Acquisition
-
-## ◽ Working with Time Series Data
-
-
-## ◽ Data Preparation
-
-
-## ◽ Exploratory Analysis
 
 ## ◽ Forecasting
