@@ -1,22 +1,73 @@
-# Anomaly Detection Exercises
-
 ![title.png](title.png)
 
 
 # 🤖 𝐂𝐥𝐚𝐬𝐬 𝐃𝐞𝐦𝐨 & 𝐑𝐞𝐬𝐨𝐮𝐫𝐜𝐞𝐬
 
-## ◽ Data Acquisition
-### ▫️ REST API
-- **REST**, referring to *Representational State Transfer*, is a set of guidelines for structuring urls. Often times you will encounter the phrase RESTful to describe web sites or web services that follow **REST** guidelines.
+## What are Anomalies?
+### 🔹 Anomaly:
 
-    [REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
+Anomalies are unusual, unexpected, surprising patterns in the observed world. An anomalous data point is a deviation from a rule or from what is regarded as normal; an outlier. An anomaly is any event or measurement that is out of the ordinary regardless of whether it is exceptional or not.
+
+### 🔹 Outliers:
+An outlier is an observation that lies an abnormal distance from other values in a random sample from a population. In a sense, this definition leaves it up to the analyst (or a consensus process) to decide what will be considered abnormal. Before abnormal observations can be singled out, it is necessary to characterize normal observations.
+
+[e-Handbook of Statistical Methods](https://www.itl.nist.gov/div898/handbook/prc/section1/prc16.htm)
+
+- The terms "outlier" and "anomaly" are frequently used interchangeably.
+
+- In some cases, statisticians sometimes use the term 'outlier' to mean "something I should remove from the dataset so that it doesn't skew my model I'm building".
+
+- In other cases, we may reserve the word 'anomaly' for data points we want to keep because they are valuable if caught or costly if missed. It's also possible to have an anomaly that is an inlier, meaning that the data is anomalous in nature but is close (in distance) to the mean, mode, or expected grouping(s).
+
+### 🔹 Examples of Anomaly Detection in Data Science
+- Fraud detection for financial companies
+
+- Medical scans like XRays, ultrasounds, and MRIs seeking abnormalities in location, density, growth, etc..
+
+- Detecting and preventing cyber-crime
+
+- Malware detection
+
+- Intelligence and Defense applications
+
+- Analytical Marketing looking for new trends in business or household purchases
+
+### 🔹 The BEST Way to Detect Anomaliesi s to *know your domain*
+- For example, knowing that there is nothing colder than absolute zero degrees Kelvin informs how we approach an observation below 0 degrees Kelvin. It may mean that there is something wrong with the measuring tool or a clerical error like a typo (more likely).
+
+- What determines if a data point is an outlier is a function of who determines if that data point is anomalous and why.
+
+- One person's noise is another person's signal, depending on their goals and the costs and benefits to be gained/avoided from identifying that data point.
+   
+    - To one analyst aiming for a clean model of 50/50 chance, observing a flipped coin that lands exactly on its side is an anomaly may be noise that they should ignore from their model.
+
+    - To another practitioner, the anomaly may be an observation of very high value that they want to catch, like early detection of a rare disease.
+
+- In [e-Handbook of Statistical Methods](https://www.itl.nist.gov/div898/handbook/prc/section1/prc16.htm), **definition of an outlier**:  "an observation that lies an abnormal distance from other values in a random sample from a population. In a sense, this definition leaves it up to the analyst (or a consensus process) to decide what will be considered abnormal".
+
+- It's important to define the criteria, the decision rule, for what makes an observation an inlier or an outlier.
+
+- Usually, the deciding factor is cost/benefit analysis:
+    - Is our goal to hunt for anomalies at all costs because lives are on the line?
     
-- **API** stands for *Application Programming Interface*. It is a way that either developers interact with a program, or one program interacts with another.
+    - Or do we do more good for people by producing a model that treats outliers as noise?
+    
+    - What is the cost of a false positive or a false negative?
+    
+    - What is the benefit of a true positive or a true negative?
 
-- **JSON** stands for *JavaScript Object Notation*. All JSON is technically valid JavaScript code; JSON is very commonly used as a data representation format, and is commonly used as a data interchange format. In fact, if you were to open up a jupyter notebook in a plain text editor, you would see a big JSON object. JSON data structures consist of arrays (analogous to lists in python), objects (dictionaries), strings, booleans, and numbers.
+### 🔹 Types of Anomalies
+- **Use Cases**: Response times (longer than usual), error rates (more than usual), network load, cyber intrusions, fraud.
 
-    [Acquire Lesson](acquire_lesson.ipynb)
+- **Point Anomalies**: A single instance of data is anomalous if it's too far off from the rest. For example, detecting data exfiltration based on gigabytes leaving the network, detecting credit card fraud based on "amount spent", etc.
 
+- **Contextual Anomalies**: The abnormality is context specific. This type of anomaly is common in time-series data. For example, accessing confidential files during work hours is normal, but in the middle of the night is odd.
+
+- **Collective Anomalies**: A set of data instances collectively helps in detecting anomalies. For example, someone is trying to copy data form a remote machine to a local host unexpectedly, an anomaly that would be flagged as a potential cyber attack. The combination of the event from the remote machine and the event from the local host combine to detect the anomaly.
+
+- **Anomalies vs. Noise Removal vs. Novelty Detection**: Novelty detection is concerned with identifying an unobserved pattern in new observations not included in training data — for instance, a sudden interest in a new channel on YouTube during Christmas. Noise Removal (NR) is the process of immunizing analysis from the occurrence of unwanted observations; in other words, removing noise from an otherwise meaningful signal.
+
+**Other Resources**: 
 ## ◽ Working with Time Series Data
 ### ▫️ `dt`
 The `.dt` accessor can be used to access various properties of a date. Some of the more common ones are listed here, and you can reference the pandas documentation for a full list.
